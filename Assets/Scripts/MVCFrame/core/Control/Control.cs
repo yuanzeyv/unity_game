@@ -26,10 +26,12 @@ namespace MVCFrame
             command.Excute(data);
         }
         //注册一个代理
-        public bool RegisterCommand(string cmdName, Command factory)
-        {   
+        public bool RegisterCommand(Command command)
+        {
+            string cmdName = command.GetType().Name;
             Sys.GetFacade().RegisterObserver(cmdName, this.ExcuteCommand);
-            CommandList[cmdName] = factory;
+            command.InitalizeCommand(cmdName);
+            CommandList[cmdName] = command; 
             return true;
         } 
         //判断当前代理是否存在
@@ -37,13 +39,15 @@ namespace MVCFrame
         {
             return CommandList[cmdName];
         }
+
+
         //取消注册一个代理
         public void UnregisterCommand(string cmdName)
         {
             //首先查询是否存在当前的命令
             if (CommandList[cmdName] == null)
                 return;
-            Sys.GetFacade().UnregisterObserver(cmdName);
+            Sys.GetFacade().UnregisterObserver(cmdName,CommandList[cmdName].Excute);
             CommandList[cmdName] = null; 
         }
 

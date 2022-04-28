@@ -19,48 +19,90 @@ namespace MediatorSpace
     }
     public class AddTypeStruct {
         public CanvasNodeIndex Type;
-        public Transform Trans;
-        public AddTypeStruct(CanvasNodeIndex type, Transform trans)
+        public BaseMediator Mediator;
+        public Transform Object;
+        public AddTypeStruct(BaseMediator mediator, CanvasNodeIndex type, Transform obj)
         {
             Type = type;
-            Trans = trans;
+            Object = obj;
+            Mediator = mediator;
         }
     }
 
     public class GameCanvasObjectMediator : Mediator
     {
-        GameObject RootNode;//对应的节点 
-        private Dictionary<int, GameObject> LayoutNodeList = new Dictionary<int, GameObject>();//管理的节点
-        private Dictionary<string, GameObject> WindowList = new Dictionary<string, GameObject>();//管理的节点
+        Transform RootNode;//对应的节点 
+        private Dictionary<string, List<AddTypeStruct>> MediatorManagerList = new Dictionary<string, List<AddTypeStruct>>();//管理的节点 
+        private Dictionary<CanvasNodeIndex, Transform> LayoutNodeList = new Dictionary<CanvasNodeIndex, Transform>();
         public GameCanvasObjectMediator()
+        {
+            AddHandle("AdditionCanvasObject", AdditionCanvasObjectHandle);
+            AddHandle("DeleteCanvasObject", DeleteCanvasObjectHandle);
+        }
+        void CloseAllLayer()
+        {
+            foreach(var temp in MediatorManagerList)
+            {
+                Sys.GetFacade().NotifyObserver(temp.Value[0].Mediator.CloseLayerNotifyName,0);//发送关闭界面的消息 
+            }
+        }
+        public override void OnRemove()
+        {
+            base.OnRemove();
+            CloseAllLayer();
+        }
+        void DeleteCanvasObjectHandle(Notifycation param)
         { 
-            AddHandle("AdditionCanvasObject", AdditionCanvasObjectHandle); 
+            var mediator = param.GetData<BaseMediator>(1);
+            var obj = param.GetData<Transform>(1); 
+            if (mediator == null || obj == null)
+            {
+                Debug.LogError("传入到界面管理的参数有误(删除)");
+                return;
+            }
+            var mediatorName = mediator.GetType().Name;
+            if (!MediatorManagerList.ContainsKey(mediatorName))
+                return;
+            List<AddTypeStruct> objList = MediatorManagerList[mediatorName]; 
+            for(int index = 0; index < objList.Count; index ++)
+            {
+                if ( objList[index].Object == obj )
+                {
+                    objList.RemoveAt(index);
+                    break;
+                }
+            }
+            if (objList.Count == 0)
+                MediatorManagerList.Remove(mediatorName); 
         }
         void AdditionCanvasObjectHandle(Notifycation param)
         {
-            AddTypeStruct obj = param.GetData<AddTypeStruct>();
-            if (!LayoutNodeList.ContainsKey((int)obj.Type))
+            var mediator = param.GetData<BaseMediator>(1);
+            var obj = param.GetData<Transform>(2);
+            CanvasNodeIndex type = param.GetData<CanvasNodeIndex>(3);
+            if (mediator == null || obj == null) {
+                Debug.LogError("传入到界面管理的参数有误");
                 return;
-            if (!obj.Trans)
-                return;
-            LayerBase layerScript = obj.Trans.GetComponent<LayerBase>();
-            if (!layerScript)
-                return; 
-            obj.Trans.SetParent(LayoutNodeList[(int)obj.Type].transform,false); 
+            }
+            AddTypeStruct typeObj = new AddTypeStruct(mediator, type, obj);
+            if (!MediatorManagerList.ContainsKey(mediator.GetType().Name))
+                MediatorManagerList[mediator.GetType().Name] = new List<AddTypeStruct>();
+            MediatorManagerList[mediator.GetType().Name].Add(typeObj);
+            obj.transform.SetParent(LayoutNodeList[type],false); 
         } 
         public override void OnRegister()
         {
             base.OnRegister();
-            RootNode = GameObject.Find("GameCanvas");
-            LayoutNodeList.Add((int)CanvasNodeIndex.LEFT_TOP      , GameObject.Find("LeftTop"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.LEFT_CENTER   , GameObject.Find("LeftCenter"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.LEFT_BOTTOM   , GameObject.Find("LeftBottom"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.RIGHT_TOP     , GameObject.Find("RightTop"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.RIGHT_CENTER  , GameObject.Find("RightCenter"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.RIGHT_BOTTOM  , GameObject.Find("RightBottom"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.CENTER_TOP    , GameObject.Find("CenterTop"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.CENTER        , GameObject.Find("Center"));
-            LayoutNodeList.Add((int)CanvasNodeIndex.CENTER_BOTTOM , GameObject.Find("CenterBottom"));
+            RootNode = GameObject.Find("GameCanvas").transform;
+            LayoutNodeList.Add(CanvasNodeIndex.LEFT_TOP      , RootNode.Find("LeftTop"));
+            LayoutNodeList.Add(CanvasNodeIndex.LEFT_CENTER   , RootNode.Find("LeftCenter"));
+            LayoutNodeList.Add(CanvasNodeIndex.LEFT_BOTTOM   , RootNode.Find("LeftBottom"));
+            LayoutNodeList.Add(CanvasNodeIndex.RIGHT_TOP     , RootNode.Find("RightTop"));
+            LayoutNodeList.Add(CanvasNodeIndex.RIGHT_CENTER  , RootNode.Find("RightCenter"));
+            LayoutNodeList.Add(CanvasNodeIndex.RIGHT_BOTTOM  , RootNode.Find("RightBottom"));
+            LayoutNodeList.Add(CanvasNodeIndex.CENTER_TOP    , RootNode.Find("CenterTop"));
+            LayoutNodeList.Add(CanvasNodeIndex.CENTER        , RootNode.Find("Center"));
+            LayoutNodeList.Add(CanvasNodeIndex.CENTER_BOTTOM , RootNode.Find("CenterBottom"));
         }
     }
 }

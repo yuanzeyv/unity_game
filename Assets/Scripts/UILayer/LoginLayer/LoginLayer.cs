@@ -6,7 +6,7 @@ using MVCFrame;
 using Tool;
 using Config.Program;
 using ProxySpace;
-using ModuleCellSpace;
+using ModuleCellSpace; 
 namespace LayerSpace { 
 public class LoginLayer:LayerBase
 { 
@@ -14,26 +14,29 @@ public class LoginLayer:LayerBase
     public InputField PassWordInputText;//获取到当前账号的 密码文本框
     public Button LoginButton;//获取到当前界面的 登录按钮
     public Text NetConnectText;//获取到下方的     服务器链接状态文本框 
-        
-        public void Awake()
+    public Sprite sprite;
+        public void Start()
         {
-            LoginButton.onClick.AddListener(delegate() 
-            {
-                LoginProxy LoginProxy = Sys.GetFacade().RetrieveProxy<LoginProxy>();
-                string uid = "yuan";  // AccountInputText.text;// 
-                string password = "123";  // PassWordInputText.text;//
-                string retStatus = LoginProxy.RetrieveModule<LoginModule>().VerifyLogin(uid, password);
-                string[] resultList = retStatus.Split(' ');
-                int ret = int.Parse(resultList[0]);
-                LoginTipsShow(ret);
-                if (ret == 0)
-                {
-                    Sys.GetFacade().NotifyObserver("CloseLoginUI");//关闭登录界面 
-                    string subID = resultList[1];
-                    string DoAuth = string.Format("{0}@{1}#{2}:{3}", Base64Encoder.Encoder.GetEncoded(uid), Base64Encoder.Encoder.GetEncoded("sample"), subID, 1);
-                    Sys.GetFacade().NotifyObserver("LoginSuccess", DoAuth);
-                }
-            });  
+           LoginButton.onClick.AddListener(delegate() 
+           {
+                 LoginProxy LoginProxy = Sys.GetFacade().RetrieveProxy<LoginProxy>();
+                 string uid = "yuan";  // AccountInputText.text;// 
+                 string password = "123";  // PassWordInputText.text;//
+                 string retStatus = LoginProxy.RetrieveModule<LoginModule>().VerifyLogin(uid, password);
+                 string[] resultList = retStatus.Split(' ');
+                 int ret = int.Parse(resultList[0]);
+                 LoginTipsShow(ret);
+                 if (ret == 0)
+                 { 
+                     string subID = resultList[1];
+                     string DoAuth = string.Format("{0}@{1}#{2}:{3}", Base64Encoder.Encoder.GetEncoded(uid), Base64Encoder.Encoder.GetEncoded("sample"), subID, 1); 
+                     InitLoginModule InitLoginProxy = Sys.GetFacade().RetrieveModule<InitLoginModule>("InitPorxy");
+                     InitLoginProxy.LoginAuth = DoAuth;
+                     Sys.GetFacade().SyncNotifyObserver("LoginSuccess", DoAuth);//登录成功
+                     InitLoginProxy.CleanLoginData();//登录数据获取成功，开始退出登录系统
+                 } 
+                
+           });  
         }
 
 
@@ -57,10 +60,7 @@ public class LoginLayer:LayerBase
             {
                 Sys.GetFacade().NotifyObserver("RefreshTipsLayerUI", StatusMapping[status]);
             }
-        }
-      void Start()
-        { 
-        }
+        } 
 
     // Update is called once per frame
       void Update()

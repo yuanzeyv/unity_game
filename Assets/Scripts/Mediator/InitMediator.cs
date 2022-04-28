@@ -25,9 +25,11 @@ class InitMediator
         Sys.GetFacade().RegisterMediator(new TimeMediator());//用户属性界面
         Sys.GetFacade().RegisterMediator(new TipsMediator ());//Tips Mediator
 
-        Sys.GetFacade().RegisterMediator(new LoginMediator());//注册这个代理 
-        //Sys.GetFacade().RegisterMediator(new BambooMediator());//注册这个代理 
-        //Sys.GetFacade().RegisterMediator(new SystemMediator());//注册这个代理
+        Sys.GetFacade().RegisterMediator(new SystemMediator());//注册这个代理
+        
+        Sys.GetFacade().RegisterMediator(new BambooHallChooseMediator());//大厅选择界面代理 
+        Sys.GetFacade().RegisterMediator(new BambooHallMediator());//大厅界面代理 
+        Sys.GetFacade().RegisterMediator(new BambooTableMediator());//大厅界面代理 
     }
 }
 

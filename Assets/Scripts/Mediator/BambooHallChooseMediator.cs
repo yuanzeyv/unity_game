@@ -6,34 +6,49 @@ using LayerSpace;
 using ProxySpace;
 namespace MediatorSpace
 {
-    public class BambooMediator : Mediator
-    {
-        Transform Window; 
-        public BambooMediator()
+    public class BambooHallChooseMediator : BaseMediator
+    { 
+        public BambooHallChooseMediator()
         {
-            AddHandle("OepnBambooHallChooseLayer", OepnBambooHallChooseLayerHandle);
-            AddHandle("CloseBambooHallChooseLayer", CloseBambooHallChooseLayerHandle);
-            AddHandle("RefreashBambooHallChooseLayer", RefreashBambooHallChooseLayer);
+            InitBaseNotify("OepnBambooHallChooseLayer", "CloseBambooHallChooseLayer");
+            AddHandle("RefreashBambooHallChooseLayer", RefreshLayer); 
+
+        } 
+        protected override void OepnLayer(Notifycation param)
+        {
+            if (Window)
+                return;
+            Transform WindowPrototype = Resources.Load<Transform>("UIResource/CanvasPrefab/WindowBaseLayer/WindowBase");//寻找一个节点
+            if (!WindowPrototype) return;
+            Window = UnityEngine.Object.Instantiate<Transform>(WindowPrototype);
+            MainWindowProxy WindowScript = Window.GetComponent<MainWindowProxy>();
+            WindowScript.InitLayer("UIResource/CanvasPrefab/Bamboo/System/BambooSystem", param);
+            Sys.GetFacade().NotifyObserver("AdditionCanvasObject", this, Window, CanvasNodeIndex.CENTER);//发送一个添加Window的通知消息  
         }
-        public virtual void OepnBambooHallChooseLayerHandle(Notifycation param)
-        {   //获取到UICOntrolProxy的代理
-            //UIControlProxy UIControlProxy = Sys.GetFacade().RetrieveProxy<UIControlProxy>();
-            //Window = UIControlProxy.LoadLayer("Bamboo/HallChoose/HallChoosePlane");//代理可以加载UI界面
-            //Window.name = this.Name;
-            //Sys.GetFacade().NotifyObserver("AdditionWindow", Window);//发送一个添加Window的通知消息
+        protected void KeyChangeHandle(Notifycation param, params object[] list)
+        {
+            if (!Window)
+                return;
+        }
+        protected void MouseChangeHandle(Notifycation param, params object[] list)
+        {
+            if (!Window)
+                return;
         }
 
-        public virtual void CloseBambooHallChooseLayerHandle(Notifycation param)
+        protected override void CloseLayer(Notifycation param)
         {
-            //关闭了当前的界面信息
-            Sys.GetFacade().NotifyObserver("DeleteWindow", this.Name);//发送一个添加Window的通知消息
-        }
-        public virtual void RefreashBambooHallChooseLayer(Notifycation param)
+            if (!Window)
+                return;
+            GameObject.Destroy(Window.gameObject);//销毁对象
+            Window = null; 
+        } 
+        protected override void RefreshLayer(Notifycation param )
         {
             if (Window == null)
                 return;
-            BambooChooseLayer SystemLayerScript = Window.gameObject.GetComponent<BambooChooseLayer>();//获取到 登录代理 
-            SystemLayerScript.UpdateLayer();
+            MainWindowProxy WindowScript = Window.GetComponent<MainWindowProxy>();
+            WindowScript.RefreshLayer(param);
         }
     }
 }

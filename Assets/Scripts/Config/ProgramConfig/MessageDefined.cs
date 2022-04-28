@@ -31,19 +31,19 @@ namespace Config
             }
             public void InitMessageDef()
             {
-                Message["SystemInitComplete"] = "SystemInitComplete"; //系统初始化完成消息
+                Message["LoginSystemInitComplete"] = "LoginSystemInitComplete"; //系统初始化完成消息
                 Message["NetDataInitSuccessCommand"] = "NetDataInitSuccessCommand";//网络数据初始化成功的消息
+                Message["SystemTimeDifferenceValue"] = "SystemTimeDifferenceValue";//系统时差的更新
 
                 Message["OpenLoginUI"] = "OpenLoginUI";
                 Message["CloseLoginUI"] = "CloseLoginUI";
-
+                
                 Message["AdditionCanvasObject"] = "AdditionCanvasObject";//主界面节点注册
+                Message["DeleteCanvasObject"] = "DeleteCanvasObject";//主界面节点注册
 
 
                 Message["AdditionSystemObject"] = "AdditionSystemObject";//3D节点注册
-                Message["DeleteSystemObject"] = "DeleteSystemObject";//3D节点反注册
-
-
+                Message["DeleteSystemObject"] = "DeleteSystemObject";//3D节点反注册 
 
                 Message["OpenPlayerInfomationLayer"] = "OepnPlayerInfomationLayer";//主界面节点注册
                 Message["ClosePlayerInfomationLayer"] = "ClosePlayerInfomationLayer";//主界面节点注册
@@ -61,21 +61,37 @@ namespace Config
 
                 Message["OepnTipsLayerUI"] = "OepnTipsLayerUI";//Tips界面的打开
                 Message["CloseTipsLayerUI"] = "CloseTipsLayerUI";//Tips界面的关闭
-                Message["RefreshTipsLayerUI"] = "RefreshTipsLayerUI";//Tips界面的刷新
-                 
-
-                Message["OepnBambooHallChooseLayer"] = "OepnBambooHallChooseLayer";//打开接竹竿大厅界面
-                Message["OepnBambooHallChooseLayer"] = "OepnBambooHallChooseLayer";//关闭接竹竿大厅界面
-                Message["RefreashBambooHallChooseLayer"] = "RefreashBambooHallChooseLayer";//刷新接竹竿大厅的界面
+                Message["RefreshTipsLayerUI"] = "RefreshTipsLayerUI";//Tips界面的刷新 
 
 
                 //command 的区域
                 Message["LoginSuccess"] = "LoginSuccess";//登录成功后的命令
+                Message["ExitLoginSuccess"] = "ExitLoginSuccess";//登录成功后的命令
                 Message["NetConnectSuccess"] = "NetConnectSuccess";//连接消息服务器成功
                 Message["NetDisconnectSuccess"] = "NetDisconnectSuccess";//消息服务器断开连接
 
+                //鼠标消息
+                Message["MouseState"] = "MouseState";//登录成功后的命令
+                Message["PuskKey"] = "PuskKey";//登录成功后的命令
+                Message["ReleaseKey"] = "ReleaseKey";//登录成功后的命令
+                 
+                //tipspopWindow 
+                Message["OepnTipsWindowLayerUI"] = "OepnTipsWindowLayerUI";//打开
+                Message["CloseTipsWindowLayerUI"] = "CloseTipsWindowLayerUI";//关闭
+                Message["RefreshTipsWindowLayerUI"] = "RefreshTipsWindowLayerUI";//刷新
 
-
+                //接龙大厅选择 
+                Message["OepnBambooHallChooseLayer"] = "OepnBambooHallChooseLayer";//打开
+                Message["CloseBambooHallChooseLayer"] = "CloseBambooHallChooseLayer";//关闭
+                Message["RefreashBambooHallChooseLayer"] = "RefreashBambooHallChooseLayer";//刷新
+                //大厅界面 
+                Message["OepnBambooHallLayer"] = "OepnBambooHallLayer";//打开
+                Message["CloseBambooHallLayer"] = "CloseBambooHallLayer";//关闭
+                Message["RefreashBambooHallLayer"] = "RefreashBambooHallLayer";//刷新
+                //桌子界面
+                Message["OepnBambooTableLayer"] = "OepnBambooTableLayer";//打开
+                Message["CloseBambooTableLayer"] = "CloseBambooTableLayer";//关闭
+                Message["RefreashBambooTableLayer"] = "RefreashBambooTableLayer";//刷新
             }
         }
     } 

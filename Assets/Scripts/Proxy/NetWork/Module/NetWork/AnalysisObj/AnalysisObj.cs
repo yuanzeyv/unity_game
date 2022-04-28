@@ -17,8 +17,8 @@ public class AnalysisObj
             MsgCell tempCell = MsgList.Peek();//查询第一个 
             if (tempCell == null || !tempCell.IsComplete())//判断是否完成了
                 break;
-            MsgCell cell = MsgList.Dequeue();
-            ret.Add(new MessageStruct(cell.Data));
+            MsgList.Dequeue();
+            ret.Add(new MessageStruct(tempCell.Data));
         }
     }
     //打包消息

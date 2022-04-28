@@ -19,8 +19,8 @@ class InitCommand
         
         Sys.GetFacade().RegisterCommand(new NetConnectSuccess());///网络连接成功的 命令 
         Sys.GetFacade().RegisterCommand(new NetDisconnectSuccess()); //网络断开连接的命令
-        Sys.GetFacade().RegisterCommand(new SystemInitComplete()); //网络断开连接的命令 
-        Sys.GetFacade().RegisterCommand(new LoginSuccess()); //登录成功的命令
+        Sys.GetFacade().RegisterCommand(new LoginSystemInitComplete()); //网络断开连接的命令  
+        Sys.GetFacade().RegisterCommand(new ExitLoginSuccess()); //数据信息初始化完成时的数据信息 
         Sys.GetFacade().RegisterCommand(new NetDataInitSuccessCommand()); //数据信息初始化完成时的数据信息
     }
 }

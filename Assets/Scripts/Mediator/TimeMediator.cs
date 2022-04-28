@@ -9,9 +9,8 @@ namespace MediatorSpace
     public class TimeMediator : BaseMediator
     { 
         public TimeMediator()
-        {
-            AddHandle("OepnTimeLayer", OepnLayer);
-            AddHandle("CloseTimeLayer", CloseLayer);
+        { 
+            InitBaseNotify("OepnTimeLayer", "CloseTimeLayer");
             AddHandle("RefreshTimeLayer", RefreshLayer);
         }
         protected override void OepnLayer(Notifycation param)
@@ -19,20 +18,21 @@ namespace MediatorSpace
             Transform resource = Resources.Load<Transform>("UIResource/CanvasPrefab/TimeLayer/TimeLayer");//寻找一个节点
             if (!resource) return;
             Window = UnityEngine.Object.Instantiate<Transform>(resource);
-            Script = Window.GetComponent<LayerBase>();
-            Sys.GetFacade().NotifyObserver("AdditionCanvasObject", new AddTypeStruct(CanvasNodeIndex.RIGHT_TOP, Window));//发送一个添加Window的通知消息
+            Sys.GetFacade().NotifyObserver("AdditionCanvasObject", this, Window, CanvasNodeIndex.CENTER);//发送一个添加Window的通知消息 
         }
 
         protected override void CloseLayer(Notifycation param)
         {
+            if (Window == null)
+                return;
             GameObject.Destroy(Window);//销毁对象
-            Window = null;
-            Script = null;
+            Window = null; 
         }
         protected override void RefreshLayer(Notifycation param)
         {
             if (Window == null)
                 return;
+            LayerBase Script = Window.GetComponent<LayerBase>();
             Script.RefreshLayer(param); 
         }
 

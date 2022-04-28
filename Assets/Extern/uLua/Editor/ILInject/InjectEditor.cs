@@ -237,7 +237,7 @@ namespace LuaEditor
                 file.CopyTo(Path.Combine(destination.FullName, file.Name), replace);
             }
             if (copyDirectories)
-            {
+            { 
                 DirectoryInfo[] dirs = source.GetDirectories();
                 for (int index = 0; index < dirs.Length; index++)
                 {

@@ -17,7 +17,7 @@ namespace MediatorSpace
         }
         void AdditionCanvasObjectHandle(Notifycation param)
         {
-            GameObject obj = param.GetData<GameObject>();
+            GameObject obj = param.GetData<GameObject>(1);
             if (WindowList.ContainsKey(obj.name))
             {
                 GameObject.Destroy(obj);
@@ -30,7 +30,7 @@ namespace MediatorSpace
         }
         void DeleteCanvasObjectHandle(Notifycation param)
         {
-            string name = param.GetData<string>();
+            string name = param.GetData<string>(1);
             if (WindowList.ContainsKey(name))
             {
                 MonoBehaviour.print("É¾³ý" + name + "½ÚµãÊ§°Ü");

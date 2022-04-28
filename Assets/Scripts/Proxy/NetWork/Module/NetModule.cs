@@ -10,11 +10,23 @@ namespace ModuleCellSpace
     {
         public delegate void NexExecuteHandle(MessageStruct param);
         public NetWorkUtil NetUtil = new NetWorkUtil();//一个网络工具类 
-        public Dictionary<uint, NexExecuteHandle> MsgHandleMap = new Dictionary<uint, NexExecuteHandle>();   
+        public Dictionary<uint, NexExecuteHandle> MsgHandleMap = new Dictionary<uint, NexExecuteHandle>();
         //开始连接网络
-        public bool ConnectSocket(int port,string addr,string name)
+        public bool Connect()
         {
-            return NetUtil.ConnectSocket(port,addr,name);
+            return NetUtil.Connect();
+        }
+        public bool IsConnect()
+        {
+            return NetUtil.IsConnect();
+        }
+        public void DisConnect()
+        {
+            NetUtil.DisConnect();
+        }
+        public void InitSocketPort(int port, string addr, string name)
+        {
+            NetUtil.InitSocketPort(port, addr, name); 
         }
         public void RegisterNetHandle(string cmd, NexExecuteHandle handle)
         {
@@ -48,19 +60,15 @@ namespace ModuleCellSpace
         //在外部有一个每秒 60次的时钟，进行调用本函数 
         public void NetMsgExecuteStepHandle()
         {
-            if (NetUtil == null) //如果当前的工具类还没有初始化 
-                return;
-            if (!NetUtil.TryGetMsg())//判断当前是否存在数据信息 
+            if (!NetUtil.CanGetMsg())//正常工作状态下才会向下走
                 return; 
             List<MessageStruct> msgList = NetUtil.GetNetWorkMsg();//获取到网络消息列表 
             Facade facade = Sys.GetFacade();
             NetMsg netObj = NetMsg.Instance();
             foreach (var msg in msgList)
             { 
-                if (NetMsg.NetIDDef.ContainsKey(msg.msgID))
-                { 
-                    MsgHandleMap[msg.msgID](msg);
-                }
+                if (NetMsg.NetIDDef.ContainsKey(msg.msgID) && MsgHandleMap.ContainsKey(msg.msgID)) 
+                    MsgHandleMap[msg.msgID](msg); 
                 else 
                     MonoBehaviour.print("消息没有被实现" + msg.msgID); 
             }

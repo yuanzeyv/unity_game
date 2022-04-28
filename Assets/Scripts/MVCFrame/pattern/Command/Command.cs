@@ -3,20 +3,18 @@
 namespace MVCFrame
 {
     public class Command:Notify
-    { 
-        private string SystemName;//关联的系统模块名称 
+    {  
         private string ObserverCmd;//通知的类型 
-        public string Cmd { get { return ObserverCmd;}}//通知的类型
-        public string SysName { get { return SystemName; } }
+        public string Cmd { get { return ObserverCmd;}}//通知的类型 
+        public string Name { get { return this.GetType().Name; } }
         public Command()
         {
         }
-        public void InitalizeCommand(string sysName, string cmdName)
-        {
-            SystemName = sysName;
+        public void InitalizeCommand(string cmdName)
+        { 
             ObserverCmd = cmdName;
         }
-        public virtual  void Excute(Notifycation data)
+        public virtual void Excute(Notifycation data)
         { 
         }
     }

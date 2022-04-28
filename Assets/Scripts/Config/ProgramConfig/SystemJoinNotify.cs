@@ -8,7 +8,7 @@ namespace Config
     {
         enum SYSTEM_ID
         {
-            PokerSystem = 1,
+            PokerSystem = 3,
         };
         public class SystemJoinNotify
         {

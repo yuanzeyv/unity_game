@@ -41,30 +41,32 @@ namespace MVCFrame
         //反注册一个observer
         public void UnregisterObserver(string cmdName, Observer.ExecuteHandle execute = null)
         {
+            if (execute == null){
+                return;//没有输入要删除的回调
+            }
             if (!ObserverList.ContainsKey(cmdName))
                 return;
-            if (execute == null) 
-                ObserverList.Remove(cmdName); 
-            else
+            var obsevers = ObserverList[cmdName];
+            for (int i = obsevers.Count - 1 ;i >= 0;i--)//通过后续遍历 查找与删除
             {
-                foreach (var item in ObserverList[cmdName])
+                var item = obsevers[i];
+                if (execute == item.Execute)
                 {
-                    if (cmdName == item.Cmd && execute == item.Execute)
-                    {
-                        ObserverList[cmdName].Remove(item);
-                        if(ObserverList[cmdName].Count == 0)
-                            ObserverList.Remove(cmdName);
-                    }
+                    ObserverList[cmdName].Remove(item);
+                    if (ObserverList[cmdName].Count == 0)
+                        ObserverList.Remove(cmdName);
+                    break;
                 }
-            }     
+            } 
         } 
         public void UnRegisterMediator(string mediatorName)
         { 
             if (!ViewList.ContainsKey(mediatorName))
-                return; 
+                return;  
+            //反注册消息列表
             foreach (var cmdName in ViewList[mediatorName].ListNotifyInitlization())
                 UnregisterObserver(cmdName, ViewList[mediatorName].ExecuteHandle);
-            ViewList[mediatorName] = null;
+            ViewList[mediatorName].OnRemove();
             ViewList.Remove(mediatorName); 
         }  
         public void NotifyObserver(string cmdName,Notifycation data)

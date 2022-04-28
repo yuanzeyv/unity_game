@@ -1,51 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ProxySpace;
 using ModuleCellSpace;
 using MVCFrame;
-
-public class BambooChooseLayer : MonoBehaviour
+using LightJson;
+public class BambooChooseLayer : WindowBaseLayer
 {
-    BambooProxy BambooProxy;
-    public Transform SysCellPre;
-    private Transform ListView;
+    BambooModule BambooModule;
+    public Text Name_Text;
+    public Transform ListView_Content; 
+    public Transform HallCell_Node; 
+
     // Start is called before the first frame update
     void Start()
     {
         InitLyaerData();
     }
+    public override  void CloseLayer()
+    {
+        Sys.GetFacade().NotifyObserver("CloseBambooHallChooseLayer");//发送一个添加Window的通知消息  
+    }
     void InitLyaerData()
     {
-        BambooProxy = Sys.GetFacade().RetrieveProxy<BambooProxy>();
-        ListView = this.transform.Find("HallList/Viewport/Content");
-        //开始请求界面信息
-        BambooProxy.RetrieveModule<BambooModule>().RequestHallList();
+        BambooModule = Sys.GetFacade().RetrieveModule<BambooModule>("BambooProxy");
+        BambooModule.RequestHallList();//打开界面前，先拉一下消息
+        RefreshLayer();
     }
-    Transform CreateSystemCell(int key, string systemName)
+    Transform CreateSystemCell(int key)
     {
-        Transform trans = UnityEngine.Object.Instantiate<Transform>(SysCellPre);
-        trans.transform.SetParent(ListView);
-        trans.GetComponent<BambooChooseHallCellLayer>().InitCellData(key, systemName);
+        Transform trans = UnityEngine.Object.Instantiate<Transform>(HallCell_Node);
+        trans.gameObject.SetActive(true);
+        trans.transform.SetParent(ListView_Content,false);
+        trans.GetComponent<BambooChooseHallCellLayer>().InitCellData(key);
         return trans;
     }
-    public void UpdateLayer()
-    { 
-        for(int i = 0; i < ListView.childCount; i++)
+    public void CleanListView()
+    {
+        //首先删除所有子节点
+        for (int i = 0; i < ListView_Content.childCount; i++)
         {
-            Transform child = ListView.GetChild(i);
+            Transform child = ListView_Content.GetChild(i);
             GameObject.Destroy(child.gameObject);
         }
-        //首先获取到当前所有的 系统信息 
-        BambooProxy SystemServiceProxy = Sys.GetFacade().RetrieveProxy<BambooProxy>();
-        Dictionary<int, string> SystemList = SystemServiceProxy.RetrieveModule<BambooModule>().GetHallInfoMap;
-        foreach (var item in SystemList){
-            CreateSystemCell(item.Key, item.Value);
-        }
     }
-    // Update is called once per frame 
-    void Update()
+
+    //更新整个界面
+    override public void RefreshLayer(object param = null)
     {
-        
-    }
+        CleanListView();
+        //首先获取到当前所有的 系统信息 
+        Dictionary<int,JsonValue > SystemList = BambooModule.GetHallInfoMap;
+        foreach (var item in SystemList)
+        {
+            CreateSystemCell(item.Key);
+        }
+    } 
 }

@@ -5,35 +5,34 @@ using UnityEngine.UI;
 using MVCFrame;
 using ProxySpace;
 using ModuleCellSpace;
+using LightJson;
 public class BambooChooseHallCellLayer : MonoBehaviour
 {
-    Button OkButton;
-    BambooProxy BambooProxy;
-    Transform HallName_Text; 
-    int HallIndex;
-    string HallName;
+    BambooModule BambooModule;
+
+    public Button ChooseButton;
+    public Text HallName_Text;
+    public Text HallPlayerCount_Text;
+
+    int HallIndex; 
     // Start is called before the first frame update
     void Start()
     {
-        BambooProxy = Sys.GetFacade().RetrieveProxy<BambooProxy>(); 
-        OkButton = this.GetComponent<Button>();
-        HallName_Text = transform.Find("HallName");
-        OkButton.onClick.AddListener(() =>
+        ChooseButton.onClick.AddListener(() =>
         {
             //开始请求界面信息
-            BambooProxy.RetrieveModule<BambooModule>().RequestEnterHall(HallIndex);
+            BambooModule.RequestEnterHall(HallIndex);
         });
-        HallName_Text.GetComponent<Text>().text = HallName;
-    }
+        BambooModule = Sys.GetFacade().RetrieveModule<BambooModule>("BambooProxy");
+        //BambooModule
+        JsonValue cellInfo = BambooModule.GetHallCellInfo(this.HallIndex);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void InitCellData(int id,string name)
+        HallName_Text.text = cellInfo["hallName"].AsString;
+        HallPlayerCount_Text.text = string.Format("在线玩家:{0}/{1}", cellInfo["nowPlayer"].AsString, cellInfo["maxPlayer"]);
+        //HallPlayerCount_Text.text = "123";
+    } 
+    public void InitCellData(int id)
     {
         HallIndex = id;
-        HallName = name;
     }
 }

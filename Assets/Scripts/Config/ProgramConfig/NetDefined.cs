@@ -44,7 +44,7 @@ namespace Config
             {
                 NetMessage["Net_LoginSystem"]       = 1;   //登入系统
                 NetMessage["Net_LoginOutSystem"]    = 2;//登出系统
-                NetMessage["Net_RequestSystem"]     = 3; //请求系统消息
+                NetMessage["Net_RequestSystemList"] = 3; //请求系统消息 
                 NetMessage["Net_SystemInitSuccess"] = 4;//登录成功的消息
 
                 NetMessage["Net_Request_HallList"]  = 100;//请求大厅详细信息
@@ -58,13 +58,21 @@ namespace Config
                 NetMessage["Net_StartGame"]         = 108;//房主开始游戏
                 NetMessage["Net_EnterGame"]         = 109;//玩家进入游戏
                 NetMessage["Net_LeaveGame"]         = 110;//玩家离开游戏
-                NetMessage["Net_LookGame"]          = 111;//离开大厅
+                NetMessage["Net_TableAllInfo"]      = 111;//请求桌子下的所有信息
                 NetMessage["Net_ChangeMaster"]      = 112;//更换房主  
+                NetMessage["Net_Request_HallInfo"]  = 113;//更换房主 
+
 
 
                 //玩家信息区域
                 NetMessage["Net_Request_PlayerInfo"] = 200;//登录成功后的命令
+
+                //时间管理器
+                NetMessage["Net_Heartbeat"] = 300;//登录成功后的命令
+                NetMessage["Net_Request_Heartbeat"] = 301;//主动请求时间信息
+
             }
+            
         }
 
     }

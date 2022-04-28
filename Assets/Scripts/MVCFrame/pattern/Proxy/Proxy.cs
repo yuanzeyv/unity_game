@@ -24,7 +24,7 @@ namespace MVCFrame
         //动态删除一个模块到代理中(代理执行中，执行)
         public void UnRegisterModule(string moduleName)
         {
-            if (ModuleList.ContainsKey(moduleName))
+            if (!ModuleList.ContainsKey(moduleName))
                 return ;
             ModuleCell module = ModuleList[moduleName];
             module.OnRemove();
@@ -41,8 +41,11 @@ namespace MVCFrame
         //删除所有的模块
         private void DestoryAllModule()
         {
-            foreach (var item in ModuleList)
-                UnRegisterModule(item.Key);
+            List<string> keys = new List<string>(); 
+            foreach(var key in ModuleList.Keys )
+                keys.Add(key); 
+            foreach (var key in keys)
+                UnRegisterModule(key); 
         }
         public virtual void OnRigister(){}
         public virtual void OnRemove(){

@@ -8,8 +8,9 @@ namespace ProxySpace
         public class SystemServiceProxy :Proxy
         {
             public SystemServiceProxy()
-            {
-                RegisterModule(new SystemModule());//添加一个网络模块  
-            } 
+        {
+            RegisterModule(new SystemModule());//添加一个网络模块  
+            RegisterModule(new TimeModule());//添加一个网络模块  
+        } 
         } 
 }

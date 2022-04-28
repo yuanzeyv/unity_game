@@ -1,28 +1,37 @@
 using UnityEngine;
-using MVCFrame; 
-using ProxySpace; 
-using Config.Program;
+using MVCFrame;
+using ProxySpace;
 using ModuleCellSpace;
 public class GameControl : MonoBehaviour
-{
-    NetModule NetModuleGrid;
-    //获取到网络模块
-    void Awake() 
+{  
+    NetModule NetModuleGrid; 
+    MouseControlModule MouseModuleGrid;
+    KeyControlModule KeyModuleGrid;
+    SyncNotifyModule SyncNotifyModuleGrid;
+    TimeModule TimeModuleGrid; 
+    void Awake()
 	{
-		Sys.GetFacade().RegisterProxy(new InitPorxy());
+		Sys.GetFacade().RegisterProxy(new InitPorxy());//注册初始化代理
         InitData();
-        //Sys.GetFacade().NotifyObserver("OpenPlayerInfomationLayer");//发送一个添加Window的通知消息
-        //Sys.GetFacade().NotifyObserver("OepnTimeLayer");//发送一个添加Window的通知消息 
-    }
+    } 
     //初始化当前的数据
     private void InitData()
     {
-        NetModuleGrid = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy"); 
+        //NetModuleGrid = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy");
+        //MouseModuleGrid = Sys.GetFacade().RetrieveModule<MouseControlModule>("InputManagerProxy");
+        //KeyModuleGrid = Sys.GetFacade().RetrieveModule<KeyControlModule>("InputManagerProxy");
+        //SyncNotifyModuleGrid = Sys.GetFacade().RetrieveModule<SyncNotifyModule>("SyncNotifyContorlProxy");
+        //TimeModuleGrid = Sys.GetFacade().RetrieveModule<TimeModule>("SystemServiceProxy");
     }
 
     // Update is called once per frame
     void Update()
-    {  
-        if(NetModuleGrid != null) NetModuleGrid.NetMsgExecuteStepHandle();  //网络消息处理 
+    {
+        double tick = Time.deltaTime;
+        //if (NetModuleGrid != null) NetModuleGrid.NetMsgExecuteStepHandle();  //网络消息处理
+       // if (SyncNotifyModuleGrid != null) SyncNotifyModuleGrid.Tick();  //异步通知消息处理
+       // if (MouseModuleGrid != null) MouseModuleGrid.Tick();  //网络消息处理
+        //if (KeyModuleGrid != null) KeyModuleGrid.Tick();  //网络消息处理 
+        //if (TimeModuleGrid != null) TimeModuleGrid.Tick(tick);  //网络消息处理  
     }
 };  
