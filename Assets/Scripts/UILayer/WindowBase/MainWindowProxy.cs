@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+<<<<<<< HEAD
 using MVCFrame;
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 
 public class MainWindowProxy : MonoBehaviour
 {
@@ -23,7 +26,11 @@ public class MainWindowProxy : MonoBehaviour
 
     private RectTransform WindowObj;//被代理的对象
     private WindowBaseLayer WindowLayer;
+<<<<<<< HEAD
     public void InitLayer(string minorWindowPath, Notifycation param)
+=======
+    public void InitLayer(string minorWindowPath, params object[] list)
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
     { 
         RectTransform windowObj = Resources.Load<RectTransform>(minorWindowPath);//寻找一个节点
         if (!windowObj) return;
@@ -31,7 +38,11 @@ public class MainWindowProxy : MonoBehaviour
         WindowObj = UnityEngine.Object.Instantiate<RectTransform>(windowObj);
         WindowLayer = WindowObj.GetComponent<WindowBaseLayer>();
         if (WindowLayer)
+<<<<<<< HEAD
             WindowLayer.InitLayer(param);
+=======
+            WindowLayer.InitLayer(list);
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         WindowObj.SetParent(ContentPlane, false);
     }
     void CloseClick()

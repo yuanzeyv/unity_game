@@ -82,24 +82,39 @@ namespace MVCFrame
         {
            return ViewObj.RetrieveMediator( viewName);
         }
+<<<<<<< HEAD
         public void NotifyObserver(string cmdName,  params object[] list)//发送一个事件通知
+=======
+        public void NotifyObserver(string cmdName, object data = null, params object[] list)//发送一个事件通知
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         {
             if (!MsgDef.IsExist(cmdName))
             {
                 MonoBehaviour.print(cmdName + "要发送的消息不存在");
                 return;
             }
+<<<<<<< HEAD
             Notifycation notifycation = new Notifycation(cmdName, list);
             ViewObj.NotifyObserver(cmdName,notifycation);
         }
         public void SyncNotifyObserver(string cmdName,params object[] list)//发送异步通知，在下一帧之后运行
+=======
+            Notifycation notifycation = new Notifycation(cmdName, data);
+            ViewObj.NotifyObserver(cmdName, notifycation, list);
+        }
+        public void SyncNotifyObserver(string cmdName, object data = null, params object[] list)//发送异步通知，在下一帧之后运行
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         {
             if (!MsgDef.IsExist(cmdName))
             {
                 MonoBehaviour.print(cmdName + "要发送的消息不存在");
                 return;
             }
+<<<<<<< HEAD
             Sys.GetFacade().RetrieveModule<SyncNotifyModule>("SyncNotifyContorlProxy").PushMessage(cmdName,list); 
+=======
+            Sys.GetFacade().RetrieveModule<SyncNotifyModule>("SyncNotifyContorlProxy").PushMessage(cmdName,data,list); 
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         }
         public static bool HasCore(string multitonKey)//查询当前的MVC外观是否存在
         {

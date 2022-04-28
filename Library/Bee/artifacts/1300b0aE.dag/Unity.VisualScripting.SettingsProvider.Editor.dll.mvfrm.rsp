@@ -104,6 +104,12 @@ Library\Bee\artifacts\mvdfrm\UnityEditor.OSXStandalone.Extensions.dll_EF9F94F9CC
 Library\Bee\artifacts\mvdfrm\UnityEditor.UWP.Extensions.dll_AEA65CC45EFCACFB.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.WebGL.Extensions.dll_0DE270389D7A5060.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.WindowsStandalone.Extensions.dll_02ED13A316F30B50.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.IonicZip.dll_329E47727E72553D.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.YamlDotNet.dll_826627103259014F.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_33D34DF16322116E.mvfrm
+=======
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.IonicZip.dll_B8D9FCC5D3B15A48.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.YamlDotNet.dll_968F4648295484B4.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_47FC6D295A1D94D3.mvfrm
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1

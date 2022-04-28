@@ -4,7 +4,7 @@ namespace MVCFrame
 {                                                                                                    
     public class Observer
     {
-        public delegate void ExecuteHandle(Notifycation param);
+        public delegate void ExecuteHandle(Notifycation param, params object[] paramList);
         private string ObserverCmd;//通知的类型
         private ExecuteHandle ObserverCallback;//一个回调函数
 

@@ -122,8 +122,11 @@
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Extern/uLua/Editor/ILInject/Mono.Cecil.dll"
+<<<<<<< HEAD
 -r:"Assets/Plugins/Demigiant/DOTween/DOTween.dll"
 -r:"Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll"
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 -r:"E:/2021.3.0f1c1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"E:/2021.3.0f1c1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"E:/2021.3.0f1c1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
@@ -421,6 +424,7 @@
 -r:"E:/2021.3.0f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
 -r:"E:/2021.3.0f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
 -r:"E:/2021.3.0f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Serialization.dll"
+<<<<<<< HEAD
 -r:"E:/UnityProject/unity_game/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
 -r:"E:/UnityProject/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/antlr.runtimePlastic.dll"
 -r:"E:/UnityProject/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/Antlr3.RuntimePlastic.dll"
@@ -436,11 +440,28 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Sysroot.Linux_x86_64.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.SysrootPackage.Editor.ref.dll"
+=======
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/antlr.runtimePlastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/Antlr3.RuntimePlastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/LibGit2SharpPlastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/log4netPlastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/Newtonsoft.Json.Net20Plastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.plasticscm-cn@1.2.2-preview/Lib/Editor/unityplastic.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.visualscripting@1.7.6/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.visualscripting@1.7.6/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
+-r:"F:/myGame/unity_game/Library/PackageCache/com.unity.visualscripting@1.7.6/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Rider.Editor.ref.dll"
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.TextMeshPro.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Timeline.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Timeline.ref.dll"
+<<<<<<< HEAD
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.Toolchain.Win-x86_64-Linux-x86_64.ref.dll"
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.VisualScripting.Core.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.VisualScripting.Core.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.VisualScripting.Flow.Editor.ref.dll"

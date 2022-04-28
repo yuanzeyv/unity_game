@@ -20,7 +20,11 @@ public class BambooHallLayer : WindowBaseLayer
     }
     public override  void CloseLayer()
     {
+<<<<<<< HEAD
         Sys.GetFacade().NotifyObserver("CloseBambooHallLayer");//发送一个添加Window的通知消息  
+=======
+        Sys.GetFacade().NotifyObserver("CloseBambooHallChooseLayer");//发送一个添加Window的通知消息  
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
     }
     void InitLyaerData()
     {
@@ -32,7 +36,11 @@ public class BambooHallLayer : WindowBaseLayer
         Transform trans = UnityEngine.Object.Instantiate<Transform>(TableCell_Node);
         trans.gameObject.SetActive(true);
         trans.transform.SetParent(ListView_Content);
+<<<<<<< HEAD
         trans.GetComponent<BambooTableCellLayer>().InitCellData(key);
+=======
+        //trans.GetComponent<BambooTableCellLayer>().InitCellData(key);
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         return trans;
     }
     public void CleanListView()

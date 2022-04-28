@@ -1,11 +1,17 @@
 Library\Bee\artifacts\mvdfrm\Unity.Rider.Editor.ref.dll_DA88E6A3E9EB6155.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\Unity.Sysroot.Linux_x86_64.ref.dll_0CF00D8B82A87F25.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.SysrootPackage.Editor.ref.dll_08B16BA041802A06.mvfrm
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 Library\Bee\artifacts\mvdfrm\Unity.TextMeshPro.Editor.ref.dll_D0BA3615D322EF6C.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TextMeshPro.ref.dll_02929A3ECA791895.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.Editor.ref.dll_17F688653313AA4C.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.ref.dll_16F8EA6B67022FB5.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\Unity.Toolchain.Win-x86_64-Linux-x86_64.ref.dll_64DDAC33FF976D62.mvfrm
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 Library\Bee\artifacts\mvdfrm\Unity.VSCode.Editor.ref.dll_AE868214B5ED3D13.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.Editor.ref.dll_514B12BC0D1D8DB7.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.ref.dll_BF8650D11F8E519A.mvfrm
@@ -101,4 +107,8 @@ Library\Bee\artifacts\mvdfrm\Unity.Android.Types.dll_BE1DA35CD221F684.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.iOS.Extensions.Xcode.dll_22213F9B66492B06.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.iOS.Extensions.Common.dll_A02F929030CD86D5.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.iOS.Extensions.Xcode.dll_D715959C557A9B47.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_33D34DF16322116E.mvfrm
+=======
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_47FC6D295A1D94D3.mvfrm
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1

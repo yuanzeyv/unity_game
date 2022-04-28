@@ -69,13 +69,13 @@ namespace MVCFrame
             ViewList[mediatorName].OnRemove();
             ViewList.Remove(mediatorName); 
         }  
-        public void NotifyObserver(string cmdName,Notifycation data)
+        public void NotifyObserver(string cmdName,Notifycation data, params object[] list)
         { 
             if (!ObserverList.ContainsKey(cmdName))
                 return;
             foreach(var item in ObserverList[cmdName])
             {
-                item.Execute(data);
+                item.Execute(data, list);
             }
         }
         public static View Instance(string InstanceKey)

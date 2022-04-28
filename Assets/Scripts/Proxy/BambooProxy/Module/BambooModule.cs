@@ -14,7 +14,10 @@ namespace ModuleCellSpace
 
         public Dictionary<int, JsonValue> TableInfoMap = new Dictionary<int, JsonValue>();
         public Dictionary<int, JsonValue> GetTableInfoMap { get { return TableInfoMap; } }
+<<<<<<< HEAD
         public int SelfHandle = 0;
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         public BambooModule()
         {
         }
@@ -36,6 +39,7 @@ namespace ModuleCellSpace
         {
             NetModule netModule = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy");
             netModule.NetUtil.SendMessage("Net_EnterHall", hallIndex);
+<<<<<<< HEAD
         }
         public void RequestHallInfo()
         {
@@ -52,6 +56,14 @@ namespace ModuleCellSpace
             NetModule netModule = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy");
             netModule.NetUtil.SendMessage("Net_TableAllInfo");
         }
+=======
+        }
+        public void RequestHallInfo()
+        {
+            NetModule netModule = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy");
+            netModule.NetUtil.SendMessage("Net_Request_HallInfo");
+        } 
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         
         public override void OnInit()
         {
@@ -67,7 +79,10 @@ namespace ModuleCellSpace
             netModule.RegisterNetHandle("Net_PlayerUnready", Net_Player_SitDown_Handle);//当收到网络消息的时候会执行 这个函数
             netModule.RegisterNetHandle("Net_PlayerStand", Net_Player_StandUP_Handle);//当收到网络消息的时候会执行 这个函数
             netModule.RegisterNetHandle("Net_PlayerReady", Net_Player_Ready_Handle);//当收到网络消息的时候会执行 这个函数  
+<<<<<<< HEAD
             netModule.RegisterNetHandle("Net_TableAllInfo", Net_TableAllInfo_Handle);//当收到网络消息的时候会执行 这个函数   
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         }
         public void Net_Request_HallList_Handle(MessageStruct data)
         {
@@ -91,6 +106,7 @@ namespace ModuleCellSpace
             }
             Sys.GetFacade().NotifyObserver("RefreashBambooHallLayer");//发送一个添加Window的通知消息
         }
+<<<<<<< HEAD
         public void Net_TableAllInfo_Handle(MessageStruct data)
         {
             MonoBehaviour.print("AAAAAAA");
@@ -99,6 +115,8 @@ namespace ModuleCellSpace
 
         }
         
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         public void Net_Enter_Hall_Handle(MessageStruct data)
         {
             if (data.param1 == -1)

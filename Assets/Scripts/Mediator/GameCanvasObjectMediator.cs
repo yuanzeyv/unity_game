@@ -75,8 +75,9 @@ namespace MediatorSpace
             if (objList.Count == 0)
                 MediatorManagerList.Remove(mediatorName); 
         }
-        void AdditionCanvasObjectHandle(Notifycation param)
+        void AdditionCanvasObjectHandle(Notifycation param, params object[] paramList)
         {
+<<<<<<< HEAD
             var mediator = param.GetData<BaseMediator>(1);
             var obj = param.GetData<Transform>(2);
             CanvasNodeIndex type = param.GetData<CanvasNodeIndex>(3);
@@ -89,6 +90,14 @@ namespace MediatorSpace
                 MediatorManagerList[mediator.GetType().Name] = new List<AddTypeStruct>();
             MediatorManagerList[mediator.GetType().Name].Add(typeObj);
             obj.transform.SetParent(LayoutNodeList[type],false); 
+=======
+            AddTypeStruct obj = param.GetData<AddTypeStruct>();
+            if (!LayoutNodeList.ContainsKey((int)obj.Type))
+                return;
+            if (!obj.Trans)
+                return; 
+            obj.Trans.SetParent(LayoutNodeList[(int)obj.Type].transform,false); 
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         } 
         public override void OnRegister()
         {

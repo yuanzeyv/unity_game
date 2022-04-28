@@ -30,11 +30,19 @@ public class TipsPopWindowLayer : WindowBaseLayer
     public override void RefreshAssignLayer(int index, object param = null)
     {
     }
+<<<<<<< HEAD
     public override void InitLayer(Notifycation param)
     {
         string desc = param.GetData<string>(1);
         string buttonDesc = param.GetData<string>(2);
         UnityEngine.Events.UnityAction buttonHandle = param.GetData< UnityEngine.Events.UnityAction>(3); 
+=======
+    public override void InitLayer(params object[] list)
+    {
+        string desc = list[0] as string;
+        string buttonDesc = list[1] as string;
+        UnityEngine.Events.UnityAction buttonHandle = list[2] as UnityEngine.Events.UnityAction;
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         
         TipsText.text = desc;
         ExecButton_Text.text = buttonDesc; 

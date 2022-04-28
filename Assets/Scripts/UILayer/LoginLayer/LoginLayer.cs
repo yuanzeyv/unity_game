@@ -17,8 +17,13 @@ public class LoginLayer:LayerBase
     public Sprite sprite;
         public void Start()
         {
+<<<<<<< HEAD
            LoginButton.onClick.AddListener(delegate() 
            {
+=======
+            //LoginButton.onClick.AddListener(delegate() 
+           // {
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
                  LoginProxy LoginProxy = Sys.GetFacade().RetrieveProxy<LoginProxy>();
                  string uid = "yuan";  // AccountInputText.text;// 
                  string password = "123";  // PassWordInputText.text;//
@@ -27,6 +32,7 @@ public class LoginLayer:LayerBase
                  int ret = int.Parse(resultList[0]);
                  LoginTipsShow(ret);
                  if (ret == 0)
+<<<<<<< HEAD
                  { 
                      string subID = resultList[1];
                      string DoAuth = string.Format("{0}@{1}#{2}:{3}", Base64Encoder.Encoder.GetEncoded(uid), Base64Encoder.Encoder.GetEncoded("sample"), subID, 1); 
@@ -37,6 +43,16 @@ public class LoginLayer:LayerBase
                  } 
                 
            });  
+=======
+                 {
+                     Sys.GetFacade().NotifyObserver("CloseLoginUI");//¹Ø±ÕµÇÂ¼½çÃæ 
+                     string subID = resultList[1];
+                     string DoAuth = string.Format("{0}@{1}#{2}:{3}", Base64Encoder.Encoder.GetEncoded(uid), Base64Encoder.Encoder.GetEncoded("sample"), subID, 1);
+                     Sys.GetFacade().NotifyObserver("LoginSuccess", DoAuth);
+                 } 
+                
+           // });  
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         }
 
 

@@ -22,11 +22,11 @@ namespace MVCFrame
                 Listens.Add(item.Key);
             return Listens;
         }
-        public virtual void ExecuteHandle(Notifycation param)
+        public virtual void ExecuteHandle(Notifycation param,params object[] paramList)
         {
             if (!Handles.ContainsKey(param.GetCmd()))
                 return;
-            Handles[param.GetCmd()](param);
+            Handles[param.GetCmd()](param, paramList);
         }
         public void AddHandle(string cmdName, Observer.ExecuteHandle execute)
         {

@@ -12,7 +12,11 @@ namespace MediatorSpace
         {
             InitBaseNotify("OpenLoginUI", "CloseLoginUI");
         }
+<<<<<<< HEAD
         protected override void OepnLayer(Notifycation param)
+=======
+        protected override void OepnLayer(Notifycation param, params object[] paramList)
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         { 
             Transform resource = Resources.Load<Transform>("UIResource/CanvasPrefab/LoginLayer/LoginLayer");//寻找一个节点
             if (!resource) return;

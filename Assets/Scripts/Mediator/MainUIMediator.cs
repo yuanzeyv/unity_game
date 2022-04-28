@@ -15,7 +15,7 @@ namespace MediatorSpace
             AddHandle("AdditionMainUIObject", AdditionCanvasObjectHandle);
             AddHandle("DeleteMainUIObject", DeleteCanvasObjectHandle);
         }
-        void AdditionCanvasObjectHandle(Notifycation param)
+        void AdditionCanvasObjectHandle(Notifycation param, params object[] paramList)
         {
             GameObject obj = param.GetData<GameObject>(1);
             if (WindowList.ContainsKey(obj.name))
@@ -28,7 +28,7 @@ namespace MediatorSpace
             WindowList.Add(obj.name, obj);
             MonoBehaviour.print("添加" + obj.name + "界面节点成功");
         }
-        void DeleteCanvasObjectHandle(Notifycation param)
+        void DeleteCanvasObjectHandle(Notifycation param, params object[] paramList)
         {
             string name = param.GetData<string>(1);
             if (WindowList.ContainsKey(name))

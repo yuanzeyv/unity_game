@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.UI;
 using ModuleCellSpace;
 using MVCFrame; 
@@ -34,4 +35,20 @@ public class BambooTableCellLayer : MonoBehaviour
         TableName_Text.text = "×À×Ó:" + ID;
     }
 
+=======
+
+public class BambooTableCellLayer : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 }

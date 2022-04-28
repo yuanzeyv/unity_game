@@ -72,9 +72,14 @@ namespace Config
 
                 //鼠标消息
                 Message["MouseState"] = "MouseState";//登录成功后的命令
+<<<<<<< HEAD
                 Message["PuskKey"] = "PuskKey";//登录成功后的命令
                 Message["ReleaseKey"] = "ReleaseKey";//登录成功后的命令
                  
+=======
+                Message["KeyState"] = "KeyState";//登录成功后的命令
+
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
                 //tipspopWindow 
                 Message["OepnTipsWindowLayerUI"] = "OepnTipsWindowLayerUI";//打开
                 Message["CloseTipsWindowLayerUI"] = "CloseTipsWindowLayerUI";//关闭
@@ -88,10 +93,13 @@ namespace Config
                 Message["OepnBambooHallLayer"] = "OepnBambooHallLayer";//打开
                 Message["CloseBambooHallLayer"] = "CloseBambooHallLayer";//关闭
                 Message["RefreashBambooHallLayer"] = "RefreashBambooHallLayer";//刷新
+<<<<<<< HEAD
                 //桌子界面
                 Message["OepnBambooTableLayer"] = "OepnBambooTableLayer";//打开
                 Message["CloseBambooTableLayer"] = "CloseBambooTableLayer";//关闭
                 Message["RefreashBambooTableLayer"] = "RefreashBambooTableLayer";//刷新
+=======
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
             }
         }
     } 

@@ -20,7 +20,7 @@ namespace MVCFrame
             MultitonKey = multitonKey; 
         }
          
-        public void ExcuteCommand(Notifycation data)
+        public void ExcuteCommand(Notifycation data, params object[] paramList)
         { 
             Command command = CommandList[data.GetCmd()]; 
             command.Excute(data);

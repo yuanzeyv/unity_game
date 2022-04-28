@@ -6,6 +6,7 @@ using LayerSpace;
 using ProxySpace;
 namespace MediatorSpace
 {
+<<<<<<< HEAD
     public class BambooHallChooseMediator : BaseMediator
     { 
         public BambooHallChooseMediator()
@@ -44,11 +45,60 @@ namespace MediatorSpace
             Window = null; 
         } 
         protected override void RefreshLayer(Notifycation param )
+=======
+    public class BambooHallChooseMediator : Mediator
+    {
+        Transform MajorWindow;
+        MainWindowProxy MajorWindowScript;
+        public BambooHallChooseMediator()
         {
-            if (Window == null)
+            AddHandle("OepnBambooHallChooseLayer", OepnLayer);
+            AddHandle("CloseBambooHallChooseLayer", CloseLayer);
+            AddHandle("RefreashBambooHallChooseLayer", RefreshLayer);
+        }
+
+        protected void OepnLayer(Notifycation param, params object[] list)
+        {
+            if (MajorWindow)
                 return;
+            Transform majorWindow = Resources.Load<Transform>("UIResource/CanvasPrefab/WindowBaseLayer/WindowBase");//寻找一个节点
+            if (!majorWindow) return;
+            MajorWindow = UnityEngine.Object.Instantiate<Transform>(majorWindow);
+            MajorWindowScript = MajorWindow.GetComponent<MainWindowProxy>();
+            MajorWindowScript.InitLayer("UIResource/CanvasPrefab/Bamboo/System/BambooSystem", list);
+            Sys.GetFacade().NotifyObserver("AdditionCanvasObject", new AddTypeStruct(CanvasNodeIndex.CENTER, MajorWindow));//发送一个添加Window的通知消息
+        }
+        protected void KeyChangeHandle(Notifycation param, params object[] list)
+        {
+            if (!MajorWindow)
+                return;
+        }
+        protected void MouseChangeHandle(Notifycation param, params object[] list)
+        {
+            if (!MajorWindow)
+                return;
+        }
+
+        protected void CloseLayer(Notifycation param, params object[] paramList)
+        {
+            if (!MajorWindow)
+                return;
+            GameObject.Destroy(MajorWindow.gameObject);//销毁对象
+            MajorWindow = null;
+            MajorWindowScript = null;
+        }
+        protected void RefreshLayer(Notifycation param, params object[] paramList)
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
+        {
+            if (MajorWindow == null)
+                return;
+<<<<<<< HEAD
             MainWindowProxy WindowScript = Window.GetComponent<MainWindowProxy>();
             WindowScript.RefreshLayer(param);
+=======
+            MajorWindowScript.RefreshLayer(paramList);
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
         }
+
     }
 }

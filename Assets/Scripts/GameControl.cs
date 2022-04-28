@@ -1,13 +1,24 @@
 using UnityEngine;
 using MVCFrame;
 using ProxySpace;
+<<<<<<< HEAD
+=======
+using System;
+using Config.Program;
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
 using ModuleCellSpace;
+using UnityEngine.EventSystems;
 public class GameControl : MonoBehaviour
+<<<<<<< HEAD
 {  
+=======
+{
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
     NetModule NetModuleGrid; 
     MouseControlModule MouseModuleGrid;
     KeyControlModule KeyModuleGrid;
     SyncNotifyModule SyncNotifyModuleGrid;
+<<<<<<< HEAD
     TimeModule TimeModuleGrid; 
     void Awake()
 	{
@@ -22,16 +33,41 @@ public class GameControl : MonoBehaviour
         //KeyModuleGrid = Sys.GetFacade().RetrieveModule<KeyControlModule>("InputManagerProxy");
         //SyncNotifyModuleGrid = Sys.GetFacade().RetrieveModule<SyncNotifyModule>("SyncNotifyContorlProxy");
         //TimeModuleGrid = Sys.GetFacade().RetrieveModule<TimeModule>("SystemServiceProxy");
+=======
+    TimeModule TimeModuleGrid;
+    //获取到网络模块
+    void Awake()
+	{
+		Sys.GetFacade().RegisterProxy(new InitPorxy());
+        InitData(); 
+    }
+    //初始化当前的数据
+    private void InitData()
+    {
+        NetModuleGrid = Sys.GetFacade().RetrieveModule<NetModule>("NetWorkProxy");
+        MouseModuleGrid = Sys.GetFacade().RetrieveModule<MouseControlModule>("InputManagerProxy");
+        KeyModuleGrid = Sys.GetFacade().RetrieveModule<KeyControlModule>("InputManagerProxy");
+        SyncNotifyModuleGrid = Sys.GetFacade().RetrieveModule<SyncNotifyModule>("SyncNotifyContorlProxy");
+        TimeModuleGrid = Sys.GetFacade().RetrieveModule<TimeModule>("SystemServiceProxy");
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
     }
 
     // Update is called once per frame
     void Update()
     {
         double tick = Time.deltaTime;
+<<<<<<< HEAD
         //if (NetModuleGrid != null) NetModuleGrid.NetMsgExecuteStepHandle();  //网络消息处理
        // if (SyncNotifyModuleGrid != null) SyncNotifyModuleGrid.Tick();  //异步通知消息处理
        // if (MouseModuleGrid != null) MouseModuleGrid.Tick();  //网络消息处理
         //if (KeyModuleGrid != null) KeyModuleGrid.Tick();  //网络消息处理 
         //if (TimeModuleGrid != null) TimeModuleGrid.Tick(tick);  //网络消息处理  
+=======
+        if (NetModuleGrid != null) NetModuleGrid.NetMsgExecuteStepHandle();  //网络消息处理
+        if (SyncNotifyModuleGrid != null) SyncNotifyModuleGrid.Tick();  //异步通知消息处理
+        if (MouseModuleGrid != null) MouseModuleGrid.Tick();  //网络消息处理
+        if (KeyModuleGrid != null) KeyModuleGrid.Tick();  //网络消息处理 
+        if (TimeModuleGrid != null) TimeModuleGrid.Tick(tick);  //网络消息处理  
+>>>>>>> b23e7a4f415aa4e1e531cb8433c539ec3ab83bb1
     }
 };  

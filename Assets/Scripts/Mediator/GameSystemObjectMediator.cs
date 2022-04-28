@@ -15,7 +15,7 @@ namespace MediatorSpace
             AddHandle("AdditionSystemObject", AdditionObjectHandle);
             AddHandle("DeleteSystemObject", DeleteObjectHandle);
         }
-        public virtual void AdditionObjectHandle(Notifycation param)
+        public virtual void AdditionObjectHandle(Notifycation param, params object[] paramList)
         {
             GameObject obj = param.GetData<GameObject>(1);
             if (WindowList.ContainsKey(obj.name))
@@ -28,7 +28,7 @@ namespace MediatorSpace
             WindowList.Add(obj.name, obj);
             MonoBehaviour.print("添加" + obj.name + "节点成功");
         }
-        public virtual void DeleteObjectHandle(Notifycation param)
+        public virtual void DeleteObjectHandle(Notifycation param, params object[] paramList)
         {
             string name = param.GetData<string>(1);
             if (WindowList.ContainsKey(name))
